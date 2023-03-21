@@ -39,12 +39,12 @@ unmanageable stress.
 
 ### Try out the Compute Pressure API
 
-To experiment with the Compute Pressure API locally, read this [page][how-to]
+To experiment with the Compute Pressure API locally, read this [page][how-to].
 
 ## Interfaces
 
 Pressure Observer API can be run in the following contexts:
-- Window
+- Window or main thread
 - Dedicated Worker
 - Shared Worker
 
@@ -62,41 +62,41 @@ Objects of this type can only be obtained in two ways: as an input to your Press
 
 ### PressureObserver
 
-When an `PressureObserver` object is created, it's configured to watch at a given sample rate the 
-pressure of platform collector supported sources. The source can be selected anytime during the 
-lifetime of the PressureObserver object. The sample rate cannot be changed after the creation of 
-the object.
+When an `PressureObserver` object is created, it's configured to watch the pressure of supported 
+sources, at a given sample rate. The supported sources can be invidually observed/unobserved at 
+anytime during the lifetime of the PressureObserver object. The sample rate cannot be changed 
+after the creation of the object.
 
 #### Constructor
 
-`PressureObserver(callback, options)`: Creates a new `PressureObserver` object which will execute
+`PressureObserver(callback, options)`: Creates a new `PressureObserver` object which will invoke
  a specified callback function when it detects that a change in the values of the source being observed has happened.
 
-The constructor takes as parameter a [callback](#callback) function and [options](#options)(optional)
+The constructor takes a [callback](#callback) function and [options](#options)(optional), as parameters.
 
 ##### Callback {: #callback }
 
-'pressureUpdateCallback()': callback holding the observer handle as well as a sequence of unread `PressureRecord`s
+'callback()': Callback receives the observer handle as well as an array of unread `PressureRecord`s objects.
 
 ##### Options {: #options }
 
-`PressureObserverOptions`: At the moment only contains the sample rate,`sampleRate`, at which user requests updates.
+`PressureObserverOptions`: Contains the sample rate,`sampleRate`, at which user requests updates.
 
 #### Methods
 
 `PressureObserver.observe(source)`: Tells the 'PressureObserver' a source to observe.
 
-`PressureObserver.unobserve(source)`: Tells the 'PressureObserver' to stop observer a selected source.
+`PressureObserver.unobserve(source)`: Tells the 'PressureObserver' to stop observer a source.
 
 `PressureObserver.disconnect()`: Tells the 'PressureObserver' to stop to observe all sources.
 
 `PressureObserver.takeRecords()`: Returns a sequence of [records](#records), since the last callback invoke.
 
-`PressureObserver.supportedSources()`(read only): Returns supported source types by the platform collector.
+`PressureObserver.supportedSources()`(read only): Returns supported source types by the hardware.
 
 ##### Parameters
 
-`source`: Define the source to be observed, for example `cpu`
+`source`: The source to be observed, for example `cpu`
 
 ### PressureRecord
 
@@ -105,17 +105,17 @@ source at a specific moment of transition.
 
 #### Instance Properties
 
-`PressureRecord.source` (Read only): The origin source from which the record is coming.
+`PressureRecord.source` (Read-only): The origin source from which the record is coming.
 
-`PressureRecord.state` (Read only): Pressure state recorded.
+`PressureRecord.state` (Read-only): Pressure state recorded.
 
-`PressureRecord.factors` (Read only): Contributing pressure factors, can be more than one.
+`PressureRecord.factors` (Read-only): Contributing pressure factors, can be more than one.
 
-`PressureRecord.time`(Read only): High resolution timestamp.
+`PressureRecord.time`(Read-only): High resolution timestamp.
 
 ##Feedback {: #feedback }
 
-The Compute Pressure team wants to hear about your experiences with the Compute Pressure API.
+The Compute Pressure team wants to hear about your experiences using the Compute Pressure API.
 Please provide your feedback and file issues on [GitHub][issues].
 
 ## Examples
@@ -149,7 +149,7 @@ There is only one way to start a pressure observer.
 observer.observe('cpu');
 ```
 In this example the `cpu` is the pressure source we are interested in. For now, it is the only one 
-available. In the future, we can consider other sources such as `gpu`, `power`.
+available. In the future, we may consider other sources such as `gpu`, `power`.
 
 Everytime we want to observe a new source, we need to call `ComputePressure.observe(source).
 
