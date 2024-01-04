@@ -10,7 +10,7 @@ description: >
 subhead: >
   Get informed about your system compute pressure.
 date: 2021-06-07
-updated: 2023-05-17
+updated: 2024-01-04
 authors:
   - jeffposnick
   - kenchris
@@ -49,6 +49,11 @@ To experiment with the Compute Pressure API locally, read this [page][how-to].
 
 Starting in Chrome 115, the Compute Pressure API is available as an [origin trial](/docs/web-platform/origin-trials/).
 It is expected to end in Chrome 118 (January&nbsp;5, 2024). [Register here][ot].
+
+{% Aside %} In some use-cases Compute Pressure API can be used on third-party iframe.
+For this reason, we had to extend the origin trial to [third-party origin trial](/docs/web-platform/third-party-origin-trials).
+Hence, we also extended the [origin trial][ot] until the end of Chrome 123 (May&nbsp;29, 2024).
+{% endAside %}
 
 ## Use-Cases
 
@@ -288,6 +293,7 @@ for reproducing, and enter [Blink>PerformanceAPIs>ComputePressure][blink-compone
 - [Ready For Trial][dev-trial]
 - [HOWTO page][how-to]
 - [Intent to Experiment][intent]
+- [Intent to Extend Experiment][intent-extension]
 
 [specs]: https://w3c.github.io/compute-pressure/
 [issues]: https://github.com/w3c/compute-pressure/issues
@@ -299,5 +305,6 @@ for reproducing, and enter [Blink>PerformanceAPIs>ComputePressure][blink-compone
 [blink-component]: https://bugs.chromium.org/p/chromium/issues/list?q=component:Blink%3EPerformanceAPIs%3EComputePressure
 [dev-trial]: https://groups.google.com/a/chromium.org/g/blink-dev/c/-1ciwdn23J4/m/CuCT52x3DgAJ
 [intent]: https://groups.google.com/a/chromium.org/g/blink-dev/c/QfJ4pngu3gc
+[intent-extension]: https://groups.google.com/a/chromium.org/g/blink-dev/c/s83S7wXxa6E
 [how-to]: https://github.com/w3c/compute-pressure/blob/main/HOWTO.md
 [ot]: https://developer.chrome.com/origintrials/#/view_trial/1196831600973709313
